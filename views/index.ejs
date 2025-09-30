@@ -1,14 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to Chibta App</title>
-</head>
-<body>
-    <h1>Welcome to Chibta App</h1>
-    <p>
-        <a href="/login">Login</a> or 
-        <a href="/signup">Sign Up</a>
-    </p>
-</body>
-</html>
+<%- include('partials/header', { title: 'Welcome to Chibta App' }) %>
+<div class="text-center mb-5">
+    <h1 class="mb-3" style="color: var(--primary-dark);">Welcome to Chibta</h1>
+    <p class="lead" style="color: var(--text);">Fresh groceries delivered to your door in 30 minutes!</p>
+</div>
+<div class="row g-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+            <img src="/images/apple.jpg" class="card-img-top" alt="Fresh Apples">
+            <div class="card-body">
+                <h5 class="card-title">Fresh Apples</h5>
+                <p class="card-text">Crisp and juicy apples, perfect for snacking.</p>
+                <button class="btn btn-primary w-100">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card h-100 shadow-sm">
+            <img src="/images/banana.jpg" class="card-img-top" alt="Bananas">
+            <div class="card-body">
+                <h5 class="card-title">Bananas</h5>
+                <p class="card-text">Sweet bananas, great for breakfast or smoothies.</p>
+                <button class="btn btn-primary w-100">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <!-- Add more product cards as needed -->
+</div>
+<%- include('partials/footer') %>
