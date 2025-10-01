@@ -1,0 +1,121 @@
+/* profile.css */
+
+body {
+    background-color: var(--background); /* Ensure consistent background */
+}
+
+.profile-header {
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow like the image */
+}
+
+.profile-main {
+    background-color: var(--background); /* Match the body background */
+}
+
+.profile-picture-container {
+    width: 100px; /* Fixed size for the circular image */
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden; /* Ensures the image is clipped to the circle */
+    border: 3px solid white; /* White border around the image */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+}
+
+.profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container */
+}
+
+.profile-camera-icon {
+    width: 30px;
+    height: 30px;
+    right: -5px; /* Adjust position */
+    bottom: -5px; /* Adjust position */
+    border: 2px solid var(--background); /* Matches background around icon */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--text); /* Use text variable for camera icon color */
+}
+.profile-camera-icon i {
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+
+.profile-name {
+    font-weight: 600; /* Slightly bolder name */
+    color: var(--text-dark);
+}
+
+.profile-email {
+    font-size: 0.9rem;
+    color: var(--text); /* Use your lighter text color */
+}
+
+.profile-menu {
+    border-radius: 0.75rem !important; /* Slightly more rounded corners for the list group */
+    overflow: hidden; /* Important for border-radius on list items */
+}
+
+.profile-menu .list-group-item {
+    padding: 1rem 1.25rem; /* More vertical padding */
+    border-color: var(--border); /* Use your border color */
+    color: var(--text-dark); /* Default text color for items */
+    font-weight: 500;
+}
+
+.profile-menu .list-group-item:last-child {
+    border-bottom: none; /* No bottom border for the last item */
+}
+
+.profile-menu .list-group-item:hover {
+    background-color: var(--background-alt); /* Lighter background on hover */
+}
+
+.profile-icon {
+    font-size: 1.2rem; /* Larger icons */
+    width: 25px; /* Fixed width for icon alignment */
+    text-align: center;
+    color: var(--text); /* Default icon color */
+}
+
+/* Specific color for sign out icon */
+.profile-menu .list-group-item a.text-success .profile-icon {
+    color: var(--primary-dark) !important; /* Force primary-dark color for the sign-out icon */
+}
+
+/* Bottom Navigation */
+.bottom-nav-bar {
+    height: 60px; /* Fixed height for the nav bar */
+    border-top: 1px solid var(--border); /* Top border */
+    z-index: 1030; /* Ensure it stays on top of other content */
+}
+
+.bottom-nav-bar .nav-item {
+    flex-grow: 1; /* Distribute space evenly */
+    max-width: 80px; /* Limit width */
+    text-align: center;
+}
+
+.bottom-nav-bar .nav-item i,
+.bottom-nav-bar .nav-item small {
+    color: var(--text); /* Default muted color for nav items */
+}
+
+/* Highlight for current page or active item */
+.bottom-nav-bar .nav-item.text-success i,
+.bottom-nav-bar .nav-item.text-success small {
+    color: var(--primary-dark) !important; /* Active item color */
+}
+
+.bottom-nav-bar .cart-icon {
+    background-color: var(--primary-dark);
+    box-shadow: 0 4px 10px rgba(108, 197, 29, 0.3); /* Shadow for cart button */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bottom-nav-bar .cart-icon:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 15px rgba(108, 197, 29, 0.4);
+}
