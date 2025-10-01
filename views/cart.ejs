@@ -1,30 +1,38 @@
-<%- include('partials/header', { title: 'My Cart', user: user, cartCount: cart ? cart.length : 0 }) %>
-
 <%
-    // --- Mock Data for Demonstration ---
+    // Safely retrieve user and cart variables, defaulting to null if they aren't passed from the server.
+    const userContext = typeof user !== 'undefined' ? user : null;
+    const cartContext = typeof cart !== 'undefined' ? cart : null;
+
+    // --- Mock Data for Demonstration (Updated to match index.ejs examples) ---
     const mockCart = [
-        { id: 101, name: "Fresh Organic Bananas", price: 1.99, quantity: 2, imageUrl: "/images/banana.jpg" },
-        { id: 102, name: "Broccoli Florets (500g)", price: 3.49, quantity: 1, imageUrl: "/images/brocoli.jpg" },
-        { id: 103, name: "Premium Apple Juice (1L)", price: 4.75, quantity: 3, imageUrl: "/images/apple_juice.jpg" }
+        // Items consistent with index.ejs: Bananas, Carrots, Broccoli
+        { id: 101, name: "Bananas (1kg)", price: 50, quantity: 2, imageUrl: "/images/banana.jpg" },
+        { id: 102, name: "Carrots (500g)", price: 75, quantity: 4, imageUrl: "/images/carrot.jpg" },
+        { id: 103, name: "Broccoli (500g)", price: 200, quantity: 1, imageUrl: "/images/brocoli.jpg" }
     ];
 
-    const cartItems = typeof cart !== 'undefined' ? cart : mockCart;
+    // Determine the actual cart items (use passed 'cart' if it exists and is an array, otherwise use mock data)
+    const cartItems = (cartContext && Array.isArray(cartContext) && cartContext.length > 0) ? cartContext : mockCart;
+    const currentCartCount = cartItems.length;
 
+    // Calculate totals based on cartItems
     const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const deliveryFee = subtotal > 20 ? 0.00 : 5.00;
     const tax = subtotal * 0.05;
     const total = subtotal + deliveryFee + tax;
 %>
 
+<%- include('partials/header', { title: 'My Cart', user: userContext, cartCount: currentCartCount }) %>
+
 <div class="row">
 
     <!-- LEFT COLUMN: Cart Items -->
     <div class="col-12 col-lg-8 mb-4 mb-lg-0">
-        <h2 class="mb-4" style="color: var(--primary-dark);">
-            Shopping Cart (<%= cartItems.length %> Items)
+        <h2 class="mb-4 text-center" style="color: var(--primary-dark);">
+            Shopping Cart (<%= currentCartCount %> Items)
         </h2>
 
-        <% if (cartItems.length === 0) { %>
+        <% if (currentCartCount === 0) { %>
             <div class="card p-5 text-center rounded-4 shadow-sm" style="border: 2px dashed var(--border);">
                 <i class="bi bi-cart-x display-1 text-muted"></i>
                 <h4 class="mt-3" style="color: var(--text-dark);">Your cart is empty!</h4>
@@ -44,7 +52,7 @@
                             <!-- Name & Price -->
                             <div class="col">
                                 <h5 class="mb-1 fw-bold cart-item-name" style="color: var(--text-dark);"><%= item.name %></h5>
-                                <p class="mb-0 text-muted small">Price: $<%= item.price.toFixed(2) %> / unit</p>
+                                <p class="mb-0 text-muted small">Price: Nu. <%= item.price.toFixed(2) %> / unit</p>
                             </div>
 
                             <!-- Quantity Selector -->
@@ -62,7 +70,7 @@
 
                             <!-- Subtotal & Remove -->
                             <div class="col-12 col-md-3 text-end d-flex flex-column align-items-end justify-content-center">
-                                <h5 class="mb-0 fw-bold" style="color: var(--primary-dark);">$<%= (item.price * item.quantity).toFixed(2) %></h5>
+                                <h5 class="mb-0 fw-bold" style="color: var(--primary-dark);">Nu. <%= (item.price * item.quantity).toFixed(2) %></h5>
                                 <button class="btn btn-sm text-danger p-0 mt-1 d-none d-md-block" type="button" onclick="removeItem(<%= item.id %>)">Remove</button>
                             </div>
                         </div>
@@ -78,19 +86,19 @@
         </div>
     </div>
 
-    <!-- RIGHT COLUMN: Order Summary -->
-    <div class="col-12 col-lg-4">
+    <!-- RIGHT COLUMN: Order Summary (Added mt-lg-4 for vertical alignment on large screens) -->
+    <div class="col-12 col-lg-4 mt-lg-4 pt-5" > 
         <div class="card order-summary-card shadow-lg rounded-4">
             <div class="card-body p-4">
                 <h4 class="card-title mb-4" style="color: var(--text-dark);">Order Summary</h4>
 
                 <div class="d-flex justify-content-between mb-2">
                     <span class="text-muted">Subtotal:</span>
-                    <span class="fw-medium">$<%= subtotal.toFixed(2) %></span>
+                    <span class="fw-medium">Nu. <%= subtotal.toFixed(2) %></span>
                 </div>
                 <div class="d-flex justify-content-between mb-2">
                     <span class="text-muted">Tax (5%):</span>
-                    <span class="fw-medium">$<%= tax.toFixed(2) %></span>
+                    <span class="fw-medium">Nu. <%= tax.toFixed(2) %></span>
                 </div>
                 <div class="d-flex justify-content-between mb-3 border-bottom pb-3">
                     <span class="text-muted">Delivery Fee:</span>
@@ -101,10 +109,10 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="mb-0 fw-bold" style="color: var(--text-dark);">Total:</h5>
-                    <h4 class="mb-0 fw-bold text-success display-6-sm">$<%= total.toFixed(2) %></h4>
+                    <h4 class="mb-0 fw-bold text-success display-6-sm">Nu. <%= total.toFixed(2) %></h4>
                 </div>
 
-                <button class="btn btn-primary btn-lg w-100" onclick="window.location.href='/checkout'" <%= cartItems.length === 0 ? 'disabled' : '' %>>
+                <button class="btn btn-primary btn-lg w-100" onclick="window.location.href='/checkout'" <%= currentCartCount === 0 ? 'disabled' : '' %>>
                     <i class="bi bi-credit-card me-2"></i> Proceed to Checkout
                 </button>
 
@@ -125,4 +133,4 @@
     }
 </script>
 
-<%- include('partials/footer', { cartCount: cart ? cart.length : 0 }) %>
+<%- include('partials/footer', { cartCount: currentCartCount }) %>

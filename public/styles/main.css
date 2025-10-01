@@ -42,68 +42,39 @@ a:hover {
     background-color: var(--primary);
     border-color: var(--primary-dark);
     color: #fff;
-    box-shadow: 0 2px 8px 0 rgba(108,197,29,0.15);
 }
 
-/* Outline Primary Button */
-.btn-outline-primary {
-    color: var(--primary-dark);
-    border-color: var(--primary-dark);
+/* Outline Button */
+.btn-outline-secondary {
+    color: var(--text);
+    border-color: var(--border);
     transition: all 0.2s;
 }
 
-.btn-outline-primary:hover,
-.btn-outline-primary:focus {
+.btn-outline-secondary:hover {
+    color: var(--primary-dark);
+    border-color: var(--primary-dark);
     background-color: var(--primary-light);
-    color: var(--primary-dark);
-    border-color: var(--primary-dark);
-    box-shadow: 0 2px 8px 0 rgba(108,197,29,0.15);
 }
 
-/* Outline Success Button */
-.btn-outline-success {
-    transition: all 0.2s;
-}
-
-.btn-outline-success:hover,
-.btn-outline-success:focus {
-    filter: brightness(0.95);
-    box-shadow: 0 2px 8px 0 rgba(108,197,29,0.10);
-}
-
-/* Focus states */
-.btn:focus, .btn-primary:focus, .btn-outline-primary:focus {
-    outline: 2px solid var(--primary-dark);
-    outline-offset: 2px;
-}
-
-/* Wishlist Button */
-.wishlist-btn {
-    color: #e74c3c;
-    background: none;
-    border: none;
-    transition: color 0.2s;
-}
-.wishlist-btn.active i,
-.wishlist-btn:focus i {
-    color: #c0392b;
-}
-.wishlist-btn:focus {
-    outline: 2px solid var(--primary-dark);
-}
 
 /* ----------------------- Cards ----------------------- */
 
 .card {
-    border-radius: 1.25rem !important;
-    box-shadow: 0 2px 16px 0 rgba(108,197,29,0.08);
     border: none;
-    transition: all 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-img-top {
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: calc(0.5rem - 1px);
+    border-top-right-radius: calc(0.5rem - 1px);
 }
 
 .card:hover {
-    box-shadow: 0 4px 24px 0 rgba(108,197,29,0.18);
-    transform: translateY(-2px) scale(1.01);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1) !important;
 }
 
 /* ----------------------- Scrollable Containers ----------------------- */
@@ -150,17 +121,26 @@ a:hover {
     transform: scale(1.1);
 }
 
-/* ----------------------- Other ----------------------- */
+/* ----------------------- Cart Styles ----------------------- */
 
-/* Category Image inside Circle */
-.category-img {
-    width: 90%;
-    height: 90%;
-    object-fit: contain;
+.cart-item {
+    background-color: white;
+    border: 1px solid var(--border);
 }
 
-/* Hover effect for any general button */
-.btn:hover, .btn:focus {
-    cursor: pointer;
-    transition: all 0.2s;
+.cart-item-img {
+    /* Set fixed size for cart thumbnails */
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /* Ensures the image covers the area nicely */
+    border: 1px solid var(--border);
+}
+
+.cart-quantity-control {
+    max-width: 120px; /* Constrain the size of the input group */
+}
+
+.order-summary-card {
+    background-color: white;
+    border: none;
 }

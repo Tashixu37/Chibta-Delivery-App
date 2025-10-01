@@ -22,10 +22,15 @@ export const profilePage = (req, res) => {
 
 //cart page
 export const cartPage = (req, res) => {
-  // Example: if you stored user info in req.session or req.user
   const user = req.session.user || null;
-  res.render("cart.ejs", { user });  // ✅ send user to EJS
+
+  // Use session cart or empty array
+  const cart = req.session.cart || []; 
+
+  // Render EJS with both user and cart
+  res.render("cart.ejs", { user, cart });
 };
+
 
 //signup action
 export const signup = async (req, res) => {

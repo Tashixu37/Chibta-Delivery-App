@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
     <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/profile.css"> 
+    <link rel="stylesheet" href="/styles/profile.css">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
     <!-- Header -->
@@ -20,22 +22,28 @@
     <main class="flex-grow-1 profile-main pt-4 pb-5 container">
         <div class="d-flex flex-column align-items-center mb-4">
             <div class="profile-picture-wrapper position-relative mb-3">
-    <% if (user && user.profilePicture) { %>
-        <img src="<%= user.profilePicture %>" alt="Profile Picture" class="profile-picture img-fluid rounded-circle">
-    <% } else { %>
-        <img src="/profiles/defaultProfile.jpg" alt="Profile Picture" class="profile-picture img-fluid rounded-circle">
-    <% } %>
+                <% if (user && user.profilePicture) { %>
+                    <img src="<%= user.profilePicture %>" alt="Profile Picture"
+                        class="profile-picture img-fluid rounded-circle">
+                    <% } else { %>
+                        <img src="/profiles/defaultProfile.jpg" alt="Profile Picture"
+                            class="profile-picture img-fluid rounded-circle">
+                        <% } %>
 
-    <!-- Camera icon outside the circle -->
-    <a href="#" class="profile-camera-icon d-flex justify-content-center align-items-center">
-        <i class="fas fa-camera"></i>
-    </a>
-</div>
+                            <!-- Camera icon outside the circle -->
+                            <a href="#" class="profile-camera-icon d-flex justify-content-center align-items-center">
+                                <i class="fas fa-camera"></i>
+                            </a>
+            </div>
 
             <% if (user) { %>
-                <h5 class="profile-name text-dark mb-1"><%= user.username %></h5>
-                <p class="profile-email text-muted mb-0"><%= user.email %></p>
-            <% } %>
+                <h5 class="profile-name text-dark mb-1">
+                    <%= user.username %>
+                </h5>
+                <p class="profile-email text-muted mb-0">
+                    <%= user.email %>
+                </p>
+                <% } %>
         </div>
 
         <div class="profile-menu list-group list-group-flush bg-white rounded-3 shadow-sm">
@@ -74,7 +82,8 @@
                 <span>Notifications</span>
                 <i class="fas fa-chevron-right ms-auto text-muted"></i>
             </a>
-            <a href="/logout" class="list-group-item list-group-item-action d-flex align-items-center text-decoration-none">
+            <a href="/logout"
+                class="list-group-item list-group-item-action d-flex align-items-center text-decoration-none">
                 <i class="fas fa-sign-out-alt profile-icon me-3 text-success"></i>
                 <span class="text-success">Sign out</span>
                 <i class="fas fa-chevron-right ms-auto text-muted"></i>
@@ -96,11 +105,13 @@
             <i class="far fa-heart fa-lg mb-1"></i>
             <small>Favorites</small>
         </a>
-        <a href="/cart" class="nav-item cart-icon position-relative d-flex justify-content-center align-items-center rounded-circle">
+        <a href="/cart"
+            class="nav-item cart-icon position-relative d-flex justify-content-center align-items-center rounded-circle">
             <i class="fas fa-shopping-bag fa-lg text-white"></i>
         </a>
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
