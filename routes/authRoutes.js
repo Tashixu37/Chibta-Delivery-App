@@ -1,9 +1,6 @@
 import express from "express";
 import passport from "passport";
 import { signupPage, loginPage, signup, logout } from "../controllers/authController.js";
-import db from "../config/db.js";
-import bcrypt from "bcrypt";
-
 
 const router = express.Router();
 
@@ -17,7 +14,7 @@ router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/failure",
 }));
-
+// Equivalent of the above code for login
 // router.post("/login", async (req, res) => {
 //   const { email, password } = req.body;
 //   console.log("email:", email);

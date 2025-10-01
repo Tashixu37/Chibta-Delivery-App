@@ -66,16 +66,35 @@
         </form>
         <div class="d-flex align-items-center ms-auto">
           <% if (typeof user !== 'undefined' && user) { %>
-          <span
-            class="me-3"
-            style="color: var(--primary-dark); font-weight: 500"
-          >
-            Hi, <%= user.name %>!
+          <span class="me-3 d-flex align-items-center">
+            <a
+              href="/profile"
+              style="
+                text-decoration: none;
+                color: var(--primary-dark);
+                display: flex;
+                align-items: center;
+              "
+            >
+              <img
+                src="<%= user.profile_pic ? user.profile_pic : './profiles/defaultProfile.jpg' %>"
+                alt="Profile"
+                style="
+                  width: 35px;
+                  height: 35px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  margin-right: 8px;
+                "
+              />
+              <!-- <%= user.name %> -->
+            </a>
           </span>
           <a href="/logout" class="btn btn-primary me-2">Logout</a>
           <% } else { %>
           <a href="/login" class="btn btn-primary me-2">Login</a>
           <% } %>
+
           <a href="/cart" class="btn btn-outline-primary position-relative">
             <i class="bi bi-cart"></i> My Cart
             <span

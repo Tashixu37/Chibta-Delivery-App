@@ -18,6 +18,10 @@
       <h2 class="mb-4 text-center" style="color: var(--primary-dark)">
         Sign Up
       </h2>
+      <% if (typeof error !== "undefined") { %>
+      <div class="alert alert-danger textƒ-center"><%= error %></div>
+      <% } %>
+
       <form action="/signup" method="POST" class="mb-3">
         <div class="mb-3">
           <!-- username -> name -->
