@@ -23,8 +23,8 @@
     >
       <div class="container-fluid">
         <a class="navbar-brand fw-bold" href="/">
-  <img src="/images/logo.png" alt="ChhibTa" style="height: 60px;">
-</a>
+          <img src="/images/logo.png" alt="ChhibTa" style="height: 60px" />
+        </a>
 
         <div class="d-flex align-items-center ms-3">
           <span class="me-2" style="color: var(--text); font-weight: 500"
@@ -75,7 +75,7 @@
               "
             >
               <img
-                src="<%= user.profile_pic ? user.profile_pic : './profiles/defaultProfile.jpg' %>"
+                src="<%= user.profile_pic ? './profiles/' + user.profile_pic : './profiles/defaultProfile.jpg' %>"
                 alt="Profile"
                 style="
                   width: 35px;
@@ -91,10 +91,10 @@
           <a href="/logout" class="btn btn-primary me-2">Logout</a>
           <% } else { %>
           <a href="/login" class="btn btn-primary me-2">Login</a>
-          <% } %>
-
+          <% } %> <% if (typeof user !== 'undefined' && user) { %>
           <a href="/cart" class="btn btn-primary position-relative">
-            <i class="bi bi-cart"></i> <span class="d-none d-md-inline">My Cart</span>
+            <i class="bi bi-cart"></i>
+            <span class="d-none d-md-inline">My Cart</span>
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >
@@ -102,11 +102,21 @@
               <span class="visually-hidden">cart items</span>
             </span>
           </a>
+          <% } else { %>
+          <a href="/login" class="btn btn-primary position-relative">
+            <i class="bi bi-cart"></i>
+            <span class="d-none d-md-inline">My Cart</span>
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
+              0
+              <span class="visually-hidden">cart items</span>
+            </span>
+          </a>
+          <% } %>
         </div>
       </div>
     </nav>
-    <div
-      class="container mt-3 p-4"
-    ></div>
+    <div class="container mt-3 p-4"></div>
   </body>
 </html>

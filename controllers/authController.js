@@ -16,19 +16,24 @@ export const signupPage = (req, res) => {
 //profile page
 export const profilePage = (req, res) => {
   // Example: if you stored user info in req.session or req.user
-  const user = req.session.user || null;
+  const user = req.user || null;  // Passport puts user here after deserializeUser
+  console.log("INSIDE authController",user);
   res.render("profile.ejs", { user });  // ✅ send user to EJS
 };
 
 //cart page
 export const cartPage = (req, res) => {
-  const user = req.session.user || null;
+  const user = req.user || null;  // Passport puts user here after deserializeUser
 
   // Use session cart or empty array
   const cart = req.session.cart || []; 
 
   // Render EJS with both user and cart
   res.render("cart.ejs", { user, cart });
+
+  console.log("INSIDE authController:");
+//   console.log("user:", user);
+//   console.log("cart:", cart);
 };
 
 
@@ -77,7 +82,7 @@ export const logout = (req, res, next) => {
     }
     req.session.destroy(() => {
       res.clearCookie("connect.sid"); // 🔥 remove from browser
-      res.redirect("/login");
+      res.redirect("/");
     });
   });
 };

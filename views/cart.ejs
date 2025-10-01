@@ -1,7 +1,9 @@
 <%
     // Safely retrieve user and cart variables, defaulting to null if they aren't passed from the server.
     const userContext = typeof user !== 'undefined' ? user : null;
+    console.log("userContext:",userContext);
     const cartContext = typeof cart !== 'undefined' ? cart : null;
+    console.log("cartContext:",cartContext);
 
     // --- Mock Data for Demonstration (Updated to match index.ejs examples) ---
     const mockCart = [
