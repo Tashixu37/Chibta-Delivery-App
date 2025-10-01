@@ -15,7 +15,9 @@ export const signupPage = (req, res) => {
 
 //profile page
 export const profilePage = (req, res) => {
-  res.render("profile.ejs");
+  // Example: if you stored user info in req.session or req.user
+  const user = req.session.user || null;
+  res.render("profile.ejs", { user });  // ✅ send user to EJS
 };
 
 //signup action
