@@ -24,7 +24,7 @@ export const profilePage = (req, res) => {
 export const cartPage = (req, res) => {
   // Example: if you stored user info in req.session or req.user
   const user = req.session.user || null;
-  res.render("profile.ejs", { user });  // ✅ send user to EJS
+  res.render("cart.ejs", { user });  // ✅ send user to EJS
 };
 
 //signup action
