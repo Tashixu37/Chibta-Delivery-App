@@ -13,6 +13,11 @@ export const signupPage = (req, res) => {
   res.render("signup.ejs", { error: null });
 };
 
+//profile page
+export const profilePage = (req, res) => {
+  res.render("profile.ejs");
+};
+
 //signup action
 export const signup = async (req, res) => {
   //  Extracts form data (name, email, phone, password) from the HTTP request body.

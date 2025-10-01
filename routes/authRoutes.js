@@ -1,12 +1,14 @@
 import express from "express";
 import passport from "passport";
-import { signupPage, loginPage, signup, logout } from "../controllers/authController.js";
+import { signupPage, loginPage, profilePage, signup, logout } from "../controllers/authController.js";
 
 const router = express.Router();
 
 // Pages
 router.get("/login", loginPage);
 router.get("/signup", signupPage);
+router.get("/profile", profilePage);
+
 
 // Actions
 router.post("/signup", signup);
