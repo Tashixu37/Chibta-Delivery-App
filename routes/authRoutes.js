@@ -1,6 +1,6 @@
 import express from "express";
 import passport from "passport";
-import { signupPage, loginPage, profilePage, signup, logout } from "../controllers/authController.js";
+import { signupPage, loginPage, profilePage, cartPage, signup, logout } from "../controllers/authController.js";
 
 const router = express.Router();
 
@@ -8,6 +8,7 @@ const router = express.Router();
 router.get("/login", loginPage);
 router.get("/signup", signupPage);
 router.get("/profile", profilePage);
+router.get("/cart", cartPage);
 
 
 // Actions

@@ -20,6 +20,13 @@ export const profilePage = (req, res) => {
   res.render("profile.ejs", { user });  // ✅ send user to EJS
 };
 
+//cart page
+export const cartPage = (req, res) => {
+  // Example: if you stored user info in req.session or req.user
+  const user = req.session.user || null;
+  res.render("profile.ejs", { user });  // ✅ send user to EJS
+};
+
 //signup action
 export const signup = async (req, res) => {
   //  Extracts form data (name, email, phone, password) from the HTTP request body.
