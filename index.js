@@ -4,6 +4,8 @@ import passport from "passport";
 import dotenv from "dotenv";
 import path from "path";
 import bodyParser from "body-parser";
+import multer from "multer";
+
 
 import authRoutes from "./routes/authRoutes.js";
 // import protectedRoutes from "./routes/protectedRoutes.js";
@@ -33,10 +35,42 @@ app.use(passport.session());
 // Routes
 app.use("/", authRoutes);
 
-// Home page – public
-// app.get("/", (req, res) => {
-//   res.render("index.ejs"); // homepage
-// });
+// Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/profiles/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, req.user.user_id + path.extname(file.originalname)); 
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Upload route
+app.post("/upload-profile", upload.single("profilePic"), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).send("No file uploaded.");
+  }
+
+  try {
+    // File name will be like "123.png"
+    const filename = req.user.user_id + path.extname(req.file.originalname);
+
+    // Update DB
+    await db.query(
+      "UPDATE users SET profile_pic = $1 WHERE user_id = $2",
+      [filename, req.user.user_id]
+    );
+
+    console.log("Profile picture updated for user:", req.user.user_id);
+    res.redirect("/profile");
+  } catch (err) {
+    console.error("Error updating profile picture:", err);
+    res.status(500).send("Server error");
+  }
+});
+
 app.get("/", (req, res) => {
   res.render("index.ejs", { user: req.user }); // pass user to header
 });

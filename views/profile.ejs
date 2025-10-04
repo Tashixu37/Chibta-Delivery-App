@@ -28,13 +28,15 @@
     <main class="flex-grow-1 profile-main pt-4 pb-5 container">
       <div class="d-flex flex-column align-items-center mb-4">
         <div class="profile-picture-wrapper position-relative mb-3">
-          <% if (user && user.profile_pic) { console.log("inside if"); console.log("User Profile Picture:",user.profile_pic);%>
+          <% if (user && user.profile_pic) { console.log("inside if");
+          console.log("User Profile Picture:",user.profile_pic);%>
           <img
             src="/profiles/<%=user.profile_pic%>"
             alt="Profile Picture"
             class="profile-picture img-fluid rounded-circle"
           />
-          <% } else { console.log("User Profile Picture:",user.profile_pic); console.log("inside else"); %>
+          <% } else { console.log("User Profile Picture:",user.profile_pic);
+          console.log("inside else"); %>
           <img
             src="/profiles/defaultProfile.jpg"
             alt="Profile Picture"
@@ -46,9 +48,26 @@
           <a
             href="#"
             class="profile-camera-icon d-flex justify-content-center align-items-center"
+            onclick="document.getElementById('profilePicInput').click(); return false;"
           >
             <i class="fas fa-camera"></i>
           </a>
+
+          <form
+            id="uploadForm"
+            action="/upload-profile"
+            method="POST"
+            enctype="multipart/form-data"
+            style="display: none"
+          >
+            <input
+              type="file"
+              id="profilePicInput"
+              name="profilePic"
+              accept="image/*"
+              onchange="document.getElementById('uploadForm').submit();"
+            />
+          </form>
         </div>
 
         <% if (user) { %>
